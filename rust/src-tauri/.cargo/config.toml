@@ -1,0 +1,4 @@
+# Pin the dependency resolver to versions whose rust-version (MSRV) is
+# compatible with the pinned toolchain rustc 1.89.0 (see rust-toolchain.toml).
+[resolver]
+incompatible-rust-versions = "fallback"

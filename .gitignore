@@ -1,0 +1,12 @@
+.DS_Store
+
+# Go 构建产物
+go/hello
+
+# Node / 前端
+rust/node_modules/
+rust/dist/
+
+# Tauri / Rust 构建产物
+rust/src-tauri/target/
+rust/src-tauri/gen/
