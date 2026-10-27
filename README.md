@@ -7,16 +7,18 @@
 ### H29X7472FN
 
 - 机型：MacBook Pro，Apple M4 Max
+- 架构：arm64（aarch64）
 - 序列号：H29X7472FN
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
 - Xcode：26.6（Build 17F113）
-- macOS SDK：26.5
-- Apple clang：21.0.0（clang-2100.1.1.101）
-- ld：1267
-- rustc：1.89.0
-- Node：20.10.0（npm 10.2.3）
-- Go：1.25.4
+- macOS SDK：26.5（MacOSX26.5.sdk，ProductBuildVersion 25F70）
+- Apple clang：21.0.0（clang-2100.1.1.101，target arm64-apple-darwin25.3.0）
+- ld：ld-1267（BUILD Jun 8 2026）
+- rustc：1.89.0（29483883e 2025-08-04，host aarch64-apple-darwin）
+- cargo：1.89.0（c24e10642 2025-06-23）
+- Node：v20.10.0（darwin-arm64，npm 10.2.3）
+- Go：go1.25.4（darwin/arm64）
 - 构建产物 `hello`：sha256 前 16 位 `8f8a227c478f7f80`
 - 构建产物 `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
 - 提交：`cb90f8c`（完整 sha256 见此提交信息）
