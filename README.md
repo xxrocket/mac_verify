@@ -10,7 +10,7 @@
 - 序列号：H29X7472FN
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
-- Xcode：26.5 (17F42)（本机实际安装 26.6 17F113，其 clang 与 macOS SDK 与 26.5 完全一致，仅 Swift 编译器不同，对 Rust/Go/C 编译无影响）
+- Xcode：26.6（Build 17F113）
 - macOS SDK：26.5（产物 LC_BUILD_VERSION 已验证）
 - Apple clang：21.0.0（clang-2100.1.1.101）
 - ld：1267
