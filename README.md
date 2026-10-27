@@ -19,9 +19,9 @@
 - cargo：1.89.0（c24e10642 2025-06-23）
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
 - Go：go1.25.4（darwin/arm64）
-- 构建产物 `hello`：sha256 前 16 位 `8f8a227c478f7f80`
+- 构建产物 `hello`：sha256 前 16 位 `58233fce57baf391`
 - 构建产物 `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
-- 提交：`cb90f8c`（完整 sha256 见此提交信息）
+- 提交：`c168e89`（完整 sha256 见此提交信息）
 
 ## 目录结构
 
