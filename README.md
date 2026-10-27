@@ -2,16 +2,18 @@
 
 验证 macOS 编译链的最小项目集：Tauri v2（Rust + TS）与 Go Hello World。
 
-## 钉死的编译链（与参考机完全一致）
+## 机器与编译链（每台机器一节，后续在此追加）
 
-构建机信息：
+### H29X7472FN
+
+机器信息：
 
 - 机型：MacBook Pro，Apple M4 Max
 - 序列号：H29X7472FN
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
 
-编译链版本：
+编译链：
 
 | 组件 | 版本 |
 |---|---|
@@ -23,24 +25,17 @@
 | Node | 20.10.0（npm 10.2.3，官方二进制） |
 | Go | 1.25.4（官方二进制） |
 
+构建产物（完整 sha256 见提交信息）：
+
+- `hello`：sha256 前 16 位 `8f8a227c478f7f80`
+- `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
+- 提交：`cb90f8c`
+
 ## 目录结构
 
 - `rust/` — Tauri v2 最小应用：Rust 端两个 command（`greet` / `host_info`），前端为 vanilla TS（vite 5），通过 IPC 调 Rust 显示 os/arch
 - `go/` — Hello World，打印 GOOS / GOARCH / Go 版本
 - `H29X7472FN_m4max_26.3.1_25D2128/` 等以 SN 命名的目录 — 各构建机的二进制产物（仅两个可执行文件）
-
-## 构建产物列表（按机器）
-
-每台机器构建后在下面追加一段；完整 sha256 见对应提交信息。
-
-### H29X7472FN
-
-- 机型/芯片：MacBook Pro / M4 Max
-- macOS：26.3.1（25D2128）
-- 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
-- `hello` sha256（前 16 位）：`8f8a227c478f7f80`
-- `mac-verify-tauri` sha256（前 16 位）：`c5993b8cb5dcaff9`
-- 提交：`cb90f8c`
 
 ## 构建
 
