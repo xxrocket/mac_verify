@@ -11,12 +11,12 @@
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
 - Xcode：26.6（Build 17F113）
-- macOS SDK：26.5（产物 LC_BUILD_VERSION 已验证）
+- macOS SDK：26.5
 - Apple clang：21.0.0（clang-2100.1.1.101）
 - ld：1267
-- rustc：1.89.0（rustup default + `rust/src-tauri/rust-toolchain.toml` 双重钉死）
-- Node：20.10.0（npm 10.2.3，官方二进制）
-- Go：1.25.4（官方二进制）
+- rustc：1.89.0
+- Node：20.10.0（npm 10.2.3）
+- Go：1.25.4
 - 构建产物 `hello`：sha256 前 16 位 `8f8a227c478f7f80`
 - 构建产物 `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
 - 提交：`cb90f8c`（完整 sha256 见此提交信息）
