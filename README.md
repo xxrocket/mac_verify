@@ -25,6 +25,17 @@
 
 - `rust/` — Tauri v2 最小应用：Rust 端两个 command（`greet` / `host_info`），前端为 vanilla TS（vite 5），通过 IPC 调 Rust 显示 os/arch
 - `go/` — Hello World，打印 GOOS / GOARCH / Go 版本
+- `H29X7472FN_m4max_26.3.1_25D2128/` 等以 SN 命名的目录 — 各构建机的二进制产物（仅两个可执行文件）
+
+## 构建产物列表（按机器）
+
+每台机器构建后在此表追加一行；完整 sha256 见对应提交信息。
+
+| 序列号 | 机型/芯片 | macOS | 产物目录 | hello sha256¹ | mac-verify-tauri sha256¹ | 提交 |
+|---|---|---|---|---|---|---|
+| H29X7472FN | MacBook Pro / M4 Max | 26.3.1 (25D2128) | `H29X7472FN_m4max_26.3.1_25D2128/` | `8f8a227c478f7f80` | `c5993b8cb5dcaff9` | `cb90f8c` |
+
+¹ sha256 前 16 位。
 
 ## 构建
 
