@@ -6,30 +6,20 @@
 
 ### H29X7472FN
 
-机器信息：
-
 - 机型：MacBook Pro，Apple M4 Max
 - 序列号：H29X7472FN
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
-
-编译链：
-
-| 组件 | 版本 |
-|---|---|
-| Xcode | 26.5 (17F42)。注：本机为 26.6 (17F113)，其 clang 与 macOS SDK 与 26.5 完全一致（clang-2100.1.1.101 / SDK 26.5 build 25F70），仅 Swift 编译器不同，对 Rust/Go/C 编译无影响 |
-| macOS SDK | 26.5（产物 `LC_BUILD_VERSION` 已验证） |
-| Apple clang | 21.0.0 (clang-2100.1.1.101) |
-| ld | 1267 |
-| rustc | 1.89.0（rustup default + `rust/src-tauri/rust-toolchain.toml` 双重钉死） |
-| Node | 20.10.0（npm 10.2.3，官方二进制） |
-| Go | 1.25.4（官方二进制） |
-
-构建产物（完整 sha256 见提交信息）：
-
-- `hello`：sha256 前 16 位 `8f8a227c478f7f80`
-- `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
-- 提交：`cb90f8c`
+- Xcode：26.5 (17F42)（本机实际安装 26.6 17F113，其 clang 与 macOS SDK 与 26.5 完全一致，仅 Swift 编译器不同，对 Rust/Go/C 编译无影响）
+- macOS SDK：26.5（产物 LC_BUILD_VERSION 已验证）
+- Apple clang：21.0.0（clang-2100.1.1.101）
+- ld：1267
+- rustc：1.89.0（rustup default + `rust/src-tauri/rust-toolchain.toml` 双重钉死）
+- Node：20.10.0（npm 10.2.3，官方二进制）
+- Go：1.25.4（官方二进制）
+- 构建产物 `hello`：sha256 前 16 位 `8f8a227c478f7f80`
+- 构建产物 `mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
+- 提交：`cb90f8c`（完整 sha256 见此提交信息）
 
 ## 目录结构
 
