@@ -19,6 +19,8 @@
 - cargo：1.89.0（c24e10642 2025-06-23）
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
 - Go：go1.25.4（darwin/arm64）
+- 编译选项（Go）：`go build -trimpath -buildvcs=false`（剔除 VCS 与路径信息）
+- 编译选项（Rust）：`RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build"`，release profile（`npx tauri build`，机器相关路径全部改写为 /build）
 - 构建产物 `go-hello`：sha256 前 16 位 `ed21bdd3b4c00ec1`（`-trimpath -buildvcs=false`，无 VCS/路径信息）
 - 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（`--remap-path-prefix=$HOME=/build` 剔除绝对路径，全量重建比特级一致）
 - 提交：`c168e89`（完整 sha256 见此提交信息）
