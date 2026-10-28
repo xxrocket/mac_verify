@@ -19,8 +19,17 @@
 - cargo：1.89.0（c24e10642 2025-06-23）
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
 - Go：go1.25.4（darwin/arm64）
-- 编译选项（Go）：`go build -trimpath -buildvcs=false`（剔除 VCS 与路径信息）
-- 编译选项（Rust）：`RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build"`，release profile（`npx tauri build`，机器相关路径全部改写为 /build）
+- 编译选项（Go）：
+  - 命令：`cd ~/code/test_temp && go build -trimpath -buildvcs=false -o go-hello .`（PATH 前缀 `~/.local/opt/go1.25.4/bin`）
+  - 生效参数（`go version -m` 记录）：`-buildmode=exe`、`-compiler=gc`、`-trimpath=true`、`-buildvcs=false`（无 vcs 记录）、`CGO_ENABLED=1`、`GOOS=darwin`、`GOARCH=arm64`、`GOARM64=v8.0`
+  - 模块：`macverify/hello`（无第三方依赖，Go 内部链接器）
+- 编译选项（Rust）：
+  - 命令：`cd rust && RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build" npx tauri build --bundles app`
+  - 环境：`DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer`（cc/clang/ld/SDK 用 Xcode 26.5）；PATH 前缀 `~/.cargo/bin` + `~/.local/opt/node-v20.10.0-darwin-arm64/bin`
+  - cargo：1.89.0 `build --release`（host `aarch64-apple-darwin`，无 `--target` 交叉）；工具链由 `rust-toolchain.toml` 钉死（channel 1.89.0，profile minimal）
+  - release profile：全默认（`opt-level=3`、`lto=false`、`codegen-units=16`、`panic=unwind`、`debug=0`、strip 未设置）
+  - 依赖：严格按 `Cargo.lock`（MSRV 兼容解析锁定，tauri 2.11.6 / 429 个包）
+  - 前端：`beforeBuildCommand` 执行 `tsc && vite build`（vite 5.4.21），dist 产物经 `generate_context!` 嵌入二进制
 - 构建产物 `go-hello`：sha256 前 16 位 `ed21bdd3b4c00ec1`（`-trimpath -buildvcs=false`，无 VCS/路径信息）
 - 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（Xcode 26.5 构建，`--remap-path-prefix` 剔除绝对路径，全量重建比特级一致）
 - 校验：Xcode 26.5 (17F42) 与 26.6 (17F113) 各自 `cargo clean` 全量构建，产物 sha256 完全一致（85a93ede…；clang-2100.1.1.101 / SDK 25F70 / ld-1267 两版本相同，仅 ld 构建日期不同但不影响输出）；本机构建时用 `DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer` 指定 26.5
