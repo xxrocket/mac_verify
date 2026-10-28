@@ -14,7 +14,7 @@
 - Xcode：26.5（Build 17F42）
 - macOS SDK：26.5（MacOSX26.5.sdk，ProductBuildVersion 25F70）
 - Apple clang：21.0.0（clang-2100.1.1.101，target arm64-apple-darwin25.3.0）
-- ld：ld-1267（BUILD Jun 8 2026）
+- ld：ld-1267（BUILD 18:30:29 Apr 22 2026）
 - rustc：1.89.0（29483883e 2025-08-04，host aarch64-apple-darwin）
 - cargo：1.89.0（c24e10642 2025-06-23）
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
@@ -22,9 +22,9 @@
 - 编译选项（Go）：`go build -trimpath -buildvcs=false`（剔除 VCS 与路径信息）
 - 编译选项（Rust）：`RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build"`，release profile（`npx tauri build`，机器相关路径全部改写为 /build）
 - 构建产物 `go-hello`：sha256 前 16 位 `ed21bdd3b4c00ec1`（`-trimpath -buildvcs=false`，无 VCS/路径信息）
-- 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（`--remap-path-prefix=$HOME=/build` 剔除绝对路径，全量重建比特级一致）
-- 校验：Xcode 26.5 (17F42) 与 26.6 (17F113) 各自 `cargo clean` 全量构建，产物 sha256 完全一致（85a93ede…，clang/SDK/ld 相同：clang-2100.1.1.101 / SDK 25F70 / ld-1267）；本机构建时用 `DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer` 指定 26.5
-- 提交：`c168e89`（完整 sha256 见此提交信息）
+- 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（Xcode 26.5 构建，`--remap-path-prefix` 剔除绝对路径，全量重建比特级一致）
+- 校验：Xcode 26.5 (17F42) 与 26.6 (17F113) 各自 `cargo clean` 全量构建，产物 sha256 完全一致（85a93ede…；clang-2100.1.1.101 / SDK 25F70 / ld-1267 两版本相同，仅 ld 构建日期不同但不影响输出）；本机构建时用 `DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer` 指定 26.5
+- 提交：`go-hello` 完整 sha256 见提交 `354cb50`，`rust-mac-verify-tauri` 完整 sha256 见提交 `da21738`
 
 ## 目录结构
 
@@ -44,7 +44,9 @@ mkdir -p ~/code/test_temp
 cp go/go.mod go/main.go ~/code/test_temp/
 cd ~/code/test_temp && go build -trimpath -buildvcs=false -o go-hello . && ./go-hello
 
-# Tauri（三条 remap 显式覆盖 ~/.cargo、~/.rustup，并用 $HOME 兜底其余主目录路径，机器相关路径全部改写为 /build；
+# Tauri（若 xcode-select 默认不是 Xcode 26.5，先指定：
+#   export DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer
+# 三条 remap 显式覆盖 ~/.cargo、~/.rustup，并用 $HOME 兜底其余主目录路径，机器相关路径全部改写为 /build；
 # cargo 的 trim-paths 在 1.89 尚未稳定故不用。DMG 需在终端授予「自动化控制 Finder」权限后才能打）
 cd ../rust && RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build" npx tauri build --bundles app
 ```
