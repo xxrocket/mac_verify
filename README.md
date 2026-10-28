@@ -11,7 +11,7 @@
 - 序列号：H29X7472FN
 - macOS：26.3.1（Build 25D2128）
 - 产物目录：`H29X7472FN_m4max_26.3.1_25D2128/`
-- Xcode：26.6（Build 17F113）
+- Xcode：26.5（Build 17F42）
 - macOS SDK：26.5（MacOSX26.5.sdk，ProductBuildVersion 25F70）
 - Apple clang：21.0.0（clang-2100.1.1.101，target arm64-apple-darwin25.3.0）
 - ld：ld-1267（BUILD Jun 8 2026）
@@ -23,6 +23,7 @@
 - 编译选项（Rust）：`RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build"`，release profile（`npx tauri build`，机器相关路径全部改写为 /build）
 - 构建产物 `go-hello`：sha256 前 16 位 `ed21bdd3b4c00ec1`（`-trimpath -buildvcs=false`，无 VCS/路径信息）
 - 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（`--remap-path-prefix=$HOME=/build` 剔除绝对路径，全量重建比特级一致）
+- 校验：Xcode 26.5 (17F42) 与 26.6 (17F113) 各自 `cargo clean` 全量构建，产物 sha256 完全一致（85a93ede…，clang/SDK/ld 相同：clang-2100.1.1.101 / SDK 25F70 / ld-1267）；本机构建时用 `DEVELOPER_DIR=/Applications/Xcode-26.5.app/Contents/Developer` 指定 26.5
 - 提交：`c168e89`（完整 sha256 见此提交信息）
 
 ## 目录结构
