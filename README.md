@@ -41,9 +41,9 @@ mkdir -p ~/code/test_temp
 cp go/go.mod go/main.go ~/code/test_temp/
 cd ~/code/test_temp && go build -trimpath -buildvcs=false -o go-hello . && ./go-hello
 
-# Tauri（RUSTFLAGS 把 $HOME 重映射为 /build，剔除二进制内的绝对路径；cargo 的 trim-paths 在 1.89 尚未稳定故不用。
-# DMG 需在终端授予「自动化控制 Finder」权限后才能打）
-cd ../rust && RUSTFLAGS="--remap-path-prefix=$HOME=/build" npx tauri build --bundles app
+# Tauri（三条 remap 显式覆盖 ~/.cargo、~/.rustup，并用 $HOME 兜底其余主目录路径，机器相关路径全部改写为 /build；
+# cargo 的 trim-paths 在 1.89 尚未稳定故不用。DMG 需在终端授予「自动化控制 Finder」权限后才能打）
+cd ../rust && RUSTFLAGS="--remap-path-prefix=$HOME/.cargo=/build/.cargo --remap-path-prefix=$HOME/.rustup=/build/.rustup --remap-path-prefix=$HOME=/build" npx tauri build --bundles app
 ```
 
 ## 版本约束说明
