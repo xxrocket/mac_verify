@@ -19,7 +19,7 @@
 - cargo：1.89.0（c24e10642 2025-06-23）
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
 - Go：go1.25.4（darwin/arm64）
-- 构建产物 `go-hello`：sha256 前 16 位 `58233fce57baf391`
+- 构建产物 `go-hello`：sha256 前 16 位 `0004a0d2eb7ca594`（于统一路径 `~/code/test_temp` 编译，不含 VCS/路径信息）
 - 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
 - 提交：`c168e89`（完整 sha256 见此提交信息）
 
@@ -36,8 +36,10 @@ Node / Go 装在 `~/.local/opt/` 下（`node-v20.10.0-darwin-arm64`、`go1.25.4`
 ```bash
 export PATH="$HOME/.cargo/bin:$HOME/.local/opt/node-v20.10.0-darwin-arm64/bin:$HOME/.local/opt/go1.25.4/bin:$PATH"
 
-# Go
-cd go && go build -o hello . && ./hello
+# Go（两台机器统一在 ~/code/test_temp 编译，保证产物无路径差异）
+mkdir -p ~/code/test_temp
+cp go/go.mod go/main.go ~/code/test_temp/
+cd ~/code/test_temp && go build -o go-hello . && ./go-hello
 
 # Tauri（打 .app；DMG 需要在终端里授予「自动化控制 Finder」权限后运行 npx tauri build）
 cd ../rust && npx tauri build --bundles app
