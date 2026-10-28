@@ -20,7 +20,7 @@
 - Node：v20.10.0（darwin-arm64，npm 10.2.3）
 - Go：go1.25.4（darwin/arm64）
 - 构建产物 `go-hello`：sha256 前 16 位 `ed21bdd3b4c00ec1`（`-trimpath -buildvcs=false`，无 VCS/路径信息）
-- 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `c5993b8cb5dcaff9`
+- 构建产物 `rust-mac-verify-tauri`：sha256 前 16 位 `85a93ede2f51d025`（`--remap-path-prefix=$HOME=/build` 剔除绝对路径，全量重建比特级一致）
 - 提交：`c168e89`（完整 sha256 见此提交信息）
 
 ## 目录结构
@@ -41,8 +41,9 @@ mkdir -p ~/code/test_temp
 cp go/go.mod go/main.go ~/code/test_temp/
 cd ~/code/test_temp && go build -trimpath -buildvcs=false -o go-hello . && ./go-hello
 
-# Tauri（打 .app；DMG 需要在终端里授予「自动化控制 Finder」权限后运行 npx tauri build）
-cd ../rust && npx tauri build --bundles app
+# Tauri（RUSTFLAGS 把 $HOME 重映射为 /build，剔除二进制内的绝对路径；cargo 的 trim-paths 在 1.89 尚未稳定故不用。
+# DMG 需在终端授予「自动化控制 Finder」权限后才能打）
+cd ../rust && RUSTFLAGS="--remap-path-prefix=$HOME=/build" npx tauri build --bundles app
 ```
 
 ## 版本约束说明
